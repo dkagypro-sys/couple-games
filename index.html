@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYBERPLAY // 2-Player Multiplayer Arena</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- PeerJS for zero-server WebRTC p2p connection -->
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Top Navigation & Room Connect Header -->
+  <header class="cyber-nav">
+    <div class="brand">
+      <i data-lucide="gamepad-2" class="brand-icon"></i>
+      <span class="brand-title">CYBER<span class="neon-text">PLAY</span></span>
+      <span class="live-pill">v2.0 P2P</span>
+    </div>
+
+    <div class="room-bar">
+      <div class="connection-status" id="status-pill">
+        <span class="status-dot"></span>
+        <span id="status-label">Initializing Peer...</span>
+      </div>
+
+      <div class="code-box">
+        <span class="code-tag">MY ID:</span>
+        <input type="text" id="my-code" readonly value="Generating..." />
+        <button id="copy-btn" class="btn-icon" title="Copy My Code">
+          <i data-lucide="copy"></i>
+        </button>
+      </div>
+
+      <div class="join-box">
+        <input type="text" id="join-code" placeholder="Enter Friend's ID..." autocomplete="off" />
+        <button id="connect-btn" class="btn-primary">
+          <i data-lucide="zap"></i> Connect
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Arcade Game Hub -->
+  <main id="hub-view" class="hub-container">
+    <section class="hero-banner">
+      <div class="hero-tag">NEXT-GEN PEER-TO-PEER MULTIPLAYER</div>
+      <h1>CHOOSE YOUR BATTLEFIELD</h1>
+      <p>Share your room code with your friend, pick any game below, and play directly in real time.</p>
+    </section>
+
+    <div class="games-grid" id="games-container">
+      <!-- Generated via JS -->
+    </div>
+  </main>
+
+  <!-- Interactive Arena / Game Screen -->
+  <section id="arena-view" class="arena-container hidden">
+    <div class="arena-topbar">
+      <button id="leave-game-btn" class="btn-ghost">
+        <i data-lucide="arrow-left"></i> Return to Hub
+      </button>
+      <div class="arena-meta">
+        <h2 id="arena-title">Game Arena</h2>
+        <div id="status-chip" class="status-chip">Waiting for opponent...</div>
+      </div>
+      <button id="restart-game-btn" class="btn-secondary">
+        <i data-lucide="rotate-ccw"></i> Restart
+      </button>
+    </div>
+
+    <div class="arena-viewport" id="arena-viewport">
+      <!-- Dynamic game canvas/DOM will be rendered here -->
+    </div>
+  </section>
+
+  <!-- Floating Audio & Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
